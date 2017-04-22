@@ -62,50 +62,50 @@
       .star-24
         .on
           display inline-block
-          height 24px
-          width 24px
+          height 12px
+          width 12px
           bg-img('star24_on')
         .half
           display inline-block
-          height 24px
-          width 24px
+          height 12px
+          width 12px
           bg-img('star24_half')
         .off
           display inline-block
-          height 24px
-          width 24px
+          height 12px
+          width 12px
           bg-img('star24_off')
       .star-36
         .on
           display inline-block
-          height 36px
-          width 36px
+          height 18px
+          width 18px
           bg-img('star36_on')
         .half
           display inline-block
-          height 36px
-          width 36px
+          height 18px
+          width 18px
           bg-img('star36_half')
         .off
           display inline-block
-          height 36px
-          width 36px
+          height 18px
+          width 18px
           bg-img('star36_off')
       .star-48
         .on
           display inline-block
-          height 48px
-          width 48px
+          height 24px
+          width 24px
           bg-img('star48_on')
         .half
           display inline-block
-          height 48px
-          width 48px
+          height 24px
+          width 24px
           bg-img('star48_half')
         .off
           display inline-block
-          height 48px
-          width 48px
+          height 24px
+          width 24px
           bg-img('star48_off')
       .star-item
         margin 0 5px

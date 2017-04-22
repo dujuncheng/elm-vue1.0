@@ -2,20 +2,14 @@
   <div class="titleWrapper">
     <div class="line"></div>
     <div class="text">
-      <span>{{titleName}}</span>
+      <slot></slot>
     </div>
     <div class="line"></div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-export default {
-  props: {
-    titleName: {
-      type: String
-    }
-  }
-};
+export default {};
 </script>
 
 <style lang="stylus" rel='stylesheet/stylus' scoped="true">

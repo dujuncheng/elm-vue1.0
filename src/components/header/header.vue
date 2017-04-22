@@ -1,94 +1,93 @@
 <template>
-  <div class="header">
-    <div class="content-wrapper container">
-      <div class="row">
-        <div class="col-xs-3">
-          <img :src="seller.avatar" alt="" width="64px" height="64px">
-        </div>
-        <div class="right-wrapper col-xs-9">
-          <div class="title-wrapper">
-            <span class="brand"></span>
-            <span class="title">{{seller.name}}</span>
-          </div>
-          <div class="description">
-            {{seller.description}} / {{seller.deliveryTime}}分钟送达
-          </div>
-          <div class="youhui" v-if="seller.supports">
-            <span class="brand" :class="classmap[seller.supports[0].type]"></span>
-            <span>{{seller.supports[0].description}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="more" @click="showdetail()">
-        <span>{{seller.supports.length}}个</span>
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      </div>
-    </div>
-    <div class="bulletin-wrapper" @click="showdetail()" >
-      <div class="container-fluid">
+  <div>
+    <div class="header">
+      <div class="content-wrapper container">
         <div class="row">
-          <div class="col-xs-1">
-            <span class="gonggao"></span>
+          <div class="col-xs-3">
+            <img :src="seller.avatar" alt="" width="64px" height="64px">
           </div>
-          <div class="col-xs-10">
-            <p class="bulletin-text">{{seller.bulletin}}</p>
+          <div class="right-wrapper col-xs-9">
+            <div class="title-wrapper">
+              <span class="brand"></span>
+              <span class="title">{{seller.name}}</span>
+            </div>
+            <div class="description">
+              {{seller.description}} / {{seller.deliveryTime}}分钟送达
           </div>
-          <div class="col-xs-1">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="background-img">
-      <img :src="seller.avatar" alt="">
-    </div>
-    <transition name="fade">
-      <div class="detail-wrapper" v-if="detailisshow">
-        <div class="wrapper clearfix">
-          <div class="item">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-12">
-                  <h1>{{seller.name}}</h1>
-                  <star-group :score="seller.score" :size=24 ></star-group>
-                </div>
-              </div>
-              <div class="row">
-                <little-title :titleName="titleName"></little-title>
-              </div>
-              <div class="row">
-                <div class="col-xs-12 itemContent" v-for='item in seller.supports'>
-                  <span class="itemPic" :class="classmap[item.type]"></span>
-                  <span>{{item.description}}</span>
-                </div>
-              </div>
-              <div class="row">
-                <little-title :titleName="titleName2"></little-title>
-              </div>
-              <div class="row">
-                <p class="bulletionText">{{seller.bulletin}}</p>
-              </div>
+            <div class="youhui" v-if="seller.supports">
+              <span class="brand" :class="classmap[seller.supports[0].type]"></span>
+              <span>{{seller.supports[0].description}}</span>
             </div>
           </div>
         </div>
-        <div class="close">
-          <span class="glyphicon glyphicon-remove" @click="closedetail()"></span>
+        <div class="more" @click="showdetail()">
+          <span>{{seller.supports.length}}个</span>
+          <span class="glyphicon glyphicon-chevron-right"></span>
         </div>
-      </div >
-    </transition>
+      </div>
+      <div class="bulletin-wrapper" @click="showdetail()" >
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-1">
+              <span class="gonggao"></span>
+            </div>
+            <div class="col-xs-10">
+              <p class="bulletin-text">{{seller.bulletin}}</p>
+            </div>
+            <div class="col-xs-1">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="background-img">
+        <img :src="seller.avatar" alt="">
+      </div>
+      <transition name="fade">
+        <div class="detail-wrapper" v-if="detailisshow">
+          <div class="wrapper clearfix">
+            <div class="item">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h1>{{seller.name}}</h1>
+                    <star-group :score="seller.score" :size=24 ></star-group>
+                  </div>
+                </div>
+                <div class="row">
+                  <little-title>优惠信息</little-title>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 itemContent" v-for='item in seller.supports'>
+                    <span class="itemPic" :class="classmap[item.type]"></span>
+                    <span>{{item.description}}</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <little-title>商家公告</little-title>
+                </div>
+                <div class="row">
+                  <p class="bulletionText">{{seller.bulletin}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="close">
+            <span class="glyphicon glyphicon-remove" @click="closedetail()"></span>
+          </div>
+        </div >
+      </transition>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import starGroup from '../../components/star/star.vue';
-  import title from '../../components/title/title.vue';
+  import starGroup from 'components/star/star.vue';
+  import title from 'components/title/title.vue';
   export default{
     data () {
       return {
-        detailisshow: false,
-        titleName: '优惠信息',
-        titleName2: '商家公告'
+        detailisshow: false
       };
     },
     methods: {

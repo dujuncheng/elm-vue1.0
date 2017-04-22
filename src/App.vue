@@ -1,25 +1,25 @@
 <template>
   <div>
     <v-header :seller="seller"></v-header>
-    <div class="tab">
+    <div class="tab" >
       <div class="tab-item">
-        <router-link to="/goods">商品</router-link>
+        <router-link to="/goods" class="tab-item-a">商品</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="/ratings">评价</router-link>
+        <router-link to="/ratings" class="tab-item-a">评价</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="/seller">商家</router-link>
+        <router-link to="/seller" class="tab-item-a">商家</router-link>
       </div>
     </div>
     <div class="content">
-      <router-view ></router-view>
+      <router-view :seller="seller">></router-view>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import header from './components/header/header.vue';
+  import vHeader from 'components/header/header.vue';
   const ERR_OK = 0;
   export default {
     data() {
@@ -28,7 +28,7 @@
       };
     },
     components: {
-      'v-header': header
+      'v-header': vHeader
     },
     mounted () {
       this.$http.get('/api/seller').then((response) => {
@@ -52,6 +52,8 @@
     .tab-item
       flex 1
       text-align center
+      & > .tab-item-a
+        text-decoration none
       & > a
         display block
         font-size 14px

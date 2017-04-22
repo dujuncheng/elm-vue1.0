@@ -1,83 +1,84 @@
 <template>
-  <div class="cartcontrol">
-    <transition name="move">
-      <div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decreaseCart">
-        <span class="inner icon-remove_circle_outline"></span>
-      </div>
-    </transition>
-    <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
-    <div class="cart-add icon-add_circle" @click.stop.prevent="addCart"></div>
+  <div class="cartcontrol-wrap">
+    <div class="cartcontrol-decrees" >
+      <transition name="move">
+        <i class="glyphicon glyphicon-minus-sign icon" @click.stop.prevent="decree" v-show="food.count>0"></i>
+      </transition>
+    </div>
+    <div class="cartcontrol-count">
+      <span v-show="food.count>0">{{food.count}}</span>
+    </div>
+    <div class="cartcontrol-add">
+      <i class="glyphicon glyphicon-plus-sign icon" @click.stop.prevent="add"></i>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import Vue from 'vue';
-
-  export default {
-    props: {
-      food: {
-        type: Object
-      }
-    },
-    methods: {
-      addCart(event) {
-        if (!event._constructed) {
-          return;
-        }
-        if (!this.food.count) {
-          Vue.set(this.food, 'count', 1);
-        } else {
-          this.food.count++;
-        }
-        this.$emit('add', event.target);
-      },
-      decreaseCart(event) {
-        if (!event._constructed) {
-          return;
-        }
-        if (this.food.count) {
-          this.food.count--;
-        }
-      }
+import Vue from 'vue';
+export default {
+  props: {
+    food: {
+      type: Object
     }
-  };
+  },
+  methods: {
+    add (event) {
+//      if (event._constructed) {
+//        return;
+//      }
+      if (!this.food.count) {
+        Vue.set(this.food, 'count', 1);
+      } else {
+        this.food.count++;
+      }
+      this.$emit('add');
+    },
+    decree (event) {
+//      if (event._constructed) {
+//        return false;
+//      }
+      if (this.food.count > 0) {
+        this.food.count--;
+      }
+      this.$emit('decree');
+    }
+  }
+};
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  .cartcontrol
-    font-size: 0
-    .cart-decrease
-      display: inline-block
-      padding: 6px
-      opacity: 1
-      transform: translate3d(0, 0, 0)
-      .inner
-        display: inline-block
-        line-height: 24px
-        font-size: 24px
-        color: rgb(0, 160, 220)
-        transition: all 0.4s linear
-        transform: rotate(0)
+<style lang="stylus" rel="stylesheet/stylus" scoped>
+.cartcontrol-wrap
+  display flex
+  align-items center
+  .cartcontrol-add
+    text-align center
+    flex 1
+    .icon
+      display inline-block
+      width 100%
+      height 100%
+      font-size 16px
+      color #00a0dc
+  .cartcontrol-decrees
+    text-align center
+    flex 1
+    transition all 0.4s linear
+    .icon
+      display inline-block
+      width 100%
+      height 100%
+      font-size 16px
+      color gainsboro
+      transform rotate(0)
+      transition all 0.4s linear
       &.move-enter-active, &.move-leave-active
         transition: all 0.4s linear
       &.move-enter, &.move-leave-active
-        opacity: 0
-        transform: translate3d(24px, 0, 0)
-        .inner
-          transform: rotate(180deg)
-    .cart-count
-      display: inline-block
-      vertical-align: top
-      width: 12px
-      padding-top: 6px
-      line-height: 24px
-      text-align: center
-      font-size: 10px
-      color: rgb(147, 153, 159)
-    .cart-add
-      display: inline-block
-      padding: 6px
-      line-height: 24px
-      font-size: 24px
-      color: rgb(0, 160, 220)
+        opacity 0
+        transform: translate(24px, 0) rotate(-180deg)
+  .cartcontrol-count
+    text-align center
+    flex 1
+    font-size 15px
 </style>
